@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:modul_10/app/routes/app_pages.dart';
 import 'package:modul_10/utils/app_color.dart';
+import 'package:modul_10/utils/time_helper.dart';
 
 import '../controllers/detail_post_controller.dart';
 
@@ -129,7 +130,7 @@ class DetailPostView extends GetView<DetailPostController> {
                           ),
                           const SizedBox(width: 12),
                           Text(
-                            "5 min read • 3 hours ago",
+                            "${TimeHelper.calculateReadTime(controller.argsData['content'])} • ${TimeHelper.timeAgo(controller.argsData['createdAt'])}",
                             style: GoogleFonts.poppins(
                               color: Colors.white70,
                               fontSize: 12,

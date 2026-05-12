@@ -6,6 +6,7 @@ class PostModel {
   final int? status;
   final String? category;
   final String? image;
+  final String? createdAt;
 
   PostModel({
     this.id,
@@ -15,6 +16,7 @@ class PostModel {
     this.status,
     this.category,
     this.image,
+    this.createdAt,
   });
 
   factory PostModel.fromJson(Map<String, dynamic> jsonData) {
@@ -26,10 +28,11 @@ class PostModel {
       status: jsonData['status_code'],
       category: jsonData['category'],
       image: jsonData['image'],
+      createdAt: jsonData['created_at'],
     );
   }
 
-  get status_code => null;
+  Null get status_code => null;
 }
 
 class PostListModel {

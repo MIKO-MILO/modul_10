@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:modul_10/app/data/post_model.dart';
 import 'package:modul_10/app/routes/app_pages.dart';
 import 'package:modul_10/utils/app_color.dart';
+import 'package:modul_10/utils/time_helper.dart';
 import 'package:modul_10/widget/auto_load.dart';
 import 'package:modul_10/widget/no_data.dart';
 import 'package:modul_10/widget/no_network.dart';
@@ -113,6 +114,7 @@ class HomeView extends GetView<HomeController> {
                                     "content": featured.content,
                                     "category": featured.category,
                                     "image": featured.image,
+                                    "createdAt": featured.createdAt,
                                   },
                                 );
                               },
@@ -175,7 +177,9 @@ class HomeView extends GetView<HomeController> {
                                           ),
                                           const SizedBox(width: 10),
                                           Text(
-                                            "5 min read",
+                                            TimeHelper.calculateReadTime(
+                                              featured.content,
+                                            ),
                                             style: GoogleFonts.poppins(
                                               color: Colors.white70,
                                               fontSize: 12,
@@ -236,7 +240,9 @@ class HomeView extends GetView<HomeController> {
                                           Row(
                                             children: [
                                               Text(
-                                                "3 hours ago",
+                                                TimeHelper.timeAgo(
+                                                  featured.createdAt,
+                                                ),
                                                 style: GoogleFonts.poppins(
                                                   color: Colors.white70,
                                                   fontSize: 12,
@@ -401,6 +407,7 @@ class HomeView extends GetView<HomeController> {
                                         "content": postData.content,
                                         "category": postData.category,
                                         "image": postData.image,
+                                        "createdAt": postData.createdAt,
                                       },
                                     );
                                   },
@@ -432,7 +439,7 @@ class HomeView extends GetView<HomeController> {
                                               CrossAxisAlignment.start,
                                           children: [
                                             Text(
-                                              "${postData.category ?? 'Business'} • 12 min read",
+                                              "${postData.category ?? 'Business'} • ${TimeHelper.calculateReadTime(postData.content)}",
                                               style: GoogleFonts.poppins(
                                                 fontSize: 10,
                                                 color: AppColor.secondarySoft,
@@ -452,7 +459,9 @@ class HomeView extends GetView<HomeController> {
                                             ),
                                             const SizedBox(height: 8),
                                             Text(
-                                              "1 min ago",
+                                              TimeHelper.timeAgo(
+                                                postData.createdAt,
+                                              ),
                                               style: GoogleFonts.poppins(
                                                 fontSize: 10,
                                                 color: AppColor.secondarySoft,

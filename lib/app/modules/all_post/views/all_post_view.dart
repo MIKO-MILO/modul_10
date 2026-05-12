@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:modul_10/app/routes/app_pages.dart';
 import 'package:modul_10/utils/app_color.dart';
+import 'package:modul_10/utils/time_helper.dart';
 import 'package:modul_10/widget/auto_load.dart';
 import 'package:modul_10/widget/no_data.dart';
 
@@ -67,6 +68,7 @@ class AllPostView extends GetView<AllPostController> {
                               "content": postData.content,
                               "category": postData.category,
                               "image": postData.image,
+                              "createdAt": postData.createdAt,
                             },
                           );
                         },
@@ -96,7 +98,7 @@ class AllPostView extends GetView<AllPostController> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    "${postData.category ?? 'General'} • 5 min read",
+                                    "${postData.category ?? 'General'} • ${TimeHelper.calculateReadTime(postData.content)}",
                                     style: GoogleFonts.poppins(
                                       fontSize: 10,
                                       color: AppColor.secondarySoft,
@@ -116,7 +118,7 @@ class AllPostView extends GetView<AllPostController> {
                                   ),
                                   const SizedBox(height: 8),
                                   Text(
-                                    "Just now",
+                                    TimeHelper.timeAgo(postData.createdAt),
                                     style: GoogleFonts.poppins(
                                       fontSize: 10,
                                       color: AppColor.secondarySoft,
