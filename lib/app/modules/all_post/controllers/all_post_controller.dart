@@ -25,9 +25,6 @@ class AllPostController extends GetxController {
   }
 
   Future<void> deletePost(String id) async {
-    var result = await PostApi().deletePostAPI(id);
-    if (result != null && result.status_code == 200) {
-      loadPost();
-    }
+    await PostApi().deletePostAPI(id);
   }
 }
